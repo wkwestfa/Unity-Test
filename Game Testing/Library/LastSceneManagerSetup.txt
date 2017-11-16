@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TestGame.unity
+- path: Assets/Scenes/Chapter 10 - Collision.unity
   isLoaded: 1
   isActive: 1

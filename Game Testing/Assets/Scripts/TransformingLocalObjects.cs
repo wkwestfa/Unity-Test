@@ -19,9 +19,9 @@ public class TransformingLocalObjects : MonoBehaviour {
 	void Update ()
     {
         // Keep in mind that you have to attach this script
-        transform.Rotate(0f, 0f, 1f);
-        transform.Translate(.05f, 0f, 0f);
-        transform.localScale = new Vector3(5f, 1f, 5f);
+        transform.Translate(.05f, 0f, 0f); // Movement
+        transform.Rotate(0f, 0f, 1f); // Rotation
+        transform.localScale = new Vector3(5f, 1f, 5f); // Scale
 
     }
 }

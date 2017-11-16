@@ -43,10 +43,22 @@ public class KeyboardInput : MonoBehaviour {
 
     void SpecificKeyInput()
     {
+        //------------ This piece is for generic keys-----------
         if (Input.anyKeyDown)
         {
             print("Key being pressed is: " + Input.inputString);
         }
+        // ------------------------------------------------------
+
+        //------------ This piece is for specific keys-----------
+        if (Input.GetKey(KeyCode.K)) // There is a keycode for every key
+        {
+            print("Key being pressed is: " + Input.inputString);
+        }
+        // ------------------------------------------------------
+
+        
+
     }
 
 
