@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Chapter 10 - Collision(Physics).unity
+- path: Assets/Games/Chaos Ball/Game 2 - Chaos Ball.unity
   isLoaded: 1
   isActive: 1
