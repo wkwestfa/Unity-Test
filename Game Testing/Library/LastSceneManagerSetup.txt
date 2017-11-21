@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Games/Chaos Ball/Game 2 - Chaos Ball.unity
+- path: Assets/Games/RPG Test/Scenes/Game Test.unity
   isLoaded: 1
   isActive: 1
