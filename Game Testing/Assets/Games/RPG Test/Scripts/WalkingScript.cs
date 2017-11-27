@@ -13,12 +13,15 @@ public class WalkingScript : MonoBehaviour {
 	void Update ()
     {
         MoveObject();
+
+
 	}
 
     void MoveObject()
     {
         float horizontalValue = Input.GetAxis("Horizontal") / 5;
         float verticalValue = Input.GetAxis("Vertical") / 5;
+
 
         if (horizontalValue != 0)
         {
