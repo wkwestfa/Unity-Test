@@ -4,21 +4,7 @@ using UnityEngine;
 
 public class NPCScript : MonoBehaviour {
 
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
-        
-	}
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        
-    }
+    public GameObject textbox;
 
     private void OnTriggerStay(Collider other)
     {
@@ -26,12 +12,12 @@ public class NPCScript : MonoBehaviour {
 
         if ((player.name == other.name) && Input.GetKey(KeyCode.E))
         {
-            print("Hello");
+            textbox.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        textbox.SetActive(false);
     }
 }
