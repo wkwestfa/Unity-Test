@@ -8,6 +8,7 @@ TagManager:
   - NPCText
   - NPCBob
   - House
+  - Menu
   layers:
   - Default
   - TransparentFX
