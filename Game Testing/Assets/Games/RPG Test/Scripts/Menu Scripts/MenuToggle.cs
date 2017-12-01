@@ -22,8 +22,6 @@ public class MenuToggle : MonoBehaviour {
         menuInventory.SetActive(false);
         menuStats.SetActive(false);
         menuSkills.SetActive(false);
-
-
 	}
 	
 	// Update is called once per frame
