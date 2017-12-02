@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Item
 {
     private int goldValue;
+    private string itemName;
 
     #region G/S
 
@@ -17,13 +19,15 @@ public abstract class Item
         goldValue = value;
     }
 
-    #endregion
-
-    bool PickUp()
+    public string GetName()
     {
-        // If player is within trigger area, and press 'e' then return true
-        // else return false
-        return false;
+        return itemName;
     }
 
+    public void SetName(string value)
+    {
+        itemName = value;
+    }
+
+    #endregion
 }

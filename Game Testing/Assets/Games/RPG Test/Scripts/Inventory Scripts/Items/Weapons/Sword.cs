@@ -1,94 +1,58 @@
 ﻿public class Sword : Weapon
 {
-    private string picture;
-    private DamageType damageType;
-    private WeaponSpec weaponSpec;
-    private WeaponType weaponType;
 
-    #region Getters and Setters
-
-    public string GetPicture()
-    {
-        return picture;
-    }
-    public void SetPicture(string value)
-    {
-        picture = value;
-    }
-
-    public DamageType GetDamageType()
-    {
-        return damageType;
-    }
-    public void SetDamageType(DamageType value)
-    {
-        damageType = value;
-    }
-
-    private WeaponSpec GetWeaponSpec()
-    {
-        return weaponSpec;
-    }
-    private void SetWeaponSpec(WeaponSpec value)
-    {
-        weaponSpec = value;
-    }
-
-    public WeaponType GetWeaponType()
-    {
-        return weaponType;
-    }
-    public void SetWeaponType(WeaponType value)
-    {
-        weaponType = value;
-    }
-
-    #endregion
-
+    /// <summary>
+    /// Create sword with name and baseline stats
+    /// </summary>
+    /// <param name="name"> Name of sword </param>
     public Sword()
     {
+        SetName("Sword");
         SetDamage(3);
         SetGoldValue(1);
         SetElementType(Element.None);
-        SetPicture("Sword");
-        SetDamageType(DamageType.Slash);
+        SetPicture("Wand");
+        SetDamageType(DamageType.Magic);
         SetWeaponSpec(WeaponSpec.One_Handed);
-        SetWeaponType(WeaponType.Sword);
+        SetWeaponType(WeaponType.Wand);
     }
 
-    public Sword(int damage) : this()
+    /// <summary>
+    /// Create sword with name and damage set
+    /// </summary>
+    /// <param name="name"> Name of sword </param>
+    /// <param name="damage"> Damage it will deal </param>
+    public Sword(string name, int damage) : this()
     {
+        this.SetName(name);
         this.SetDamage(damage);
     }
 
-    public Sword(int damage, int goldValue) : this()
+    /// <summary>
+    /// Create sword with name, damage, and goldValue
+    /// </summary>
+    /// <param name="name"> Name of sword </param>
+    /// <param name="damage"> Damage it will deal </param>
+    /// <param name="goldValue"> Amount it is worth </param>
+    public Sword(string name, int damage, int goldValue) : this()
     {
+        this.SetName(name);
         this.SetDamage(damage);
         this.SetGoldValue(goldValue);
     }
 
-    public Sword(int damage, int goldValue, Element elementType)
+    /// <summary>
+    /// Create sword with name, damage, gold value, and element type
+    /// </summary>
+    /// <param name="name"> Name of sword </param>
+    /// <param name="damage"> Damage it will deal </param>
+    /// <param name="goldValue"> Amount it is worth </param>
+    /// <param name="elementType"> Element attached to it </param>
+    public Sword(string name, int damage, int goldValue, Element elementType)
     {
+        this.SetName(name);
         this.SetDamage(damage);
         this.SetGoldValue(goldValue);
         this.SetElementType(elementType);
-    }
-
-    public void ShowStats()
-    {
-        int damage;
-        int goldValue;
-        string picture;
-        Element elementType;
-        WeaponSpec weaponSpec;
-        DamageType damageType;
-        
-
-        damage = GetDamage();
-        goldValue = GetGoldValue();
-        picture = GetPicture();
-        elementType = GetElementType();
-        weaponSpec = GetWeaponSpec();
-        damageType = GetDamageType();
     }
 }

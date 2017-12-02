@@ -1,74 +1,54 @@
 ﻿using UnityEngine;
 
 public class Axe : Weapon {
-    private string picture;
-    private DamageType damageType;
-    private WeaponSpec weaponSpec;
-    private WeaponType weaponType;
 
-    #region Getters and Setters
 
-        public string GetPicture()
-        {
-            return picture;
-        }
-        public void SetPicture(string value)
-        {
-            picture = value;
-        }
-
-        public DamageType GetDamageType()
-        {
-            return damageType;
-        }
-        public void SetDamageType(DamageType value)
-        {
-            damageType = value;
-        }
-
-        private WeaponSpec GetWeaponSpec()
-        {
-            return weaponSpec;
-        }
-        private void SetWeaponSpec(WeaponSpec value)
-        {
-            weaponSpec = value;
-        }
-
-        public WeaponType GetWeaponType()
-        {
-            return weaponType;
-        }
-        public void SetWeaponType(WeaponType value)
-        {
-            weaponType = value;
-        }
-
-    #endregion
-
-    public Axe()
+    /// <summary>
+    /// Create axe with name and baseline stats
+    /// </summary>
+    /// <param name="name"> Name of axe </param>
+    public Axe(string name)
     {
+        SetName(name);
         SetDamage(3);
         SetGoldValue(1);
         SetElementType(Element.None);
-        SetPicture("Axe");
-        SetDamageType(DamageType.Cleave);
+        SetPicture("Wand");
+        SetDamageType(DamageType.Magic);
         SetWeaponSpec(WeaponSpec.One_Handed);
-        SetWeaponType(WeaponType.Axe);
+        SetWeaponType(WeaponType.Wand);
     }
 
-    public Axe(int damage) : this()
+    /// <summary>
+    /// Create axe with name and damage set
+    /// </summary>
+    /// <param name="name"> Name of axe </param>
+    /// <param name="damage"> Damage it will deal </param>
+    public Axe(string name, int damage) : this(name)
     {
         this.SetDamage(damage);
     }
 
-    public Axe(int damage, int goldValue) : this()
+    /// <summary>
+    /// Create axe with name, damage, and goldValue
+    /// </summary>
+    /// <param name="name"> Name of axe </param>
+    /// <param name="damage"> Damage it will deal </param>
+    /// <param name="goldValue"> Amount it is worth </param>
+    public Axe(string name, int damage, int goldValue) : this(name)
     {
         this.SetDamage(damage);
         this.SetGoldValue(goldValue);
     }
 
-    public Axe(int damage, int goldValue, Element elementType) : this()
+    /// <summary>
+    /// Create axe with name, damage, gold value, and element type
+    /// </summary>
+    /// <param name="name"> Name of axe </param>
+    /// <param name="damage"> Damage it will deal </param>
+    /// <param name="goldValue"> Amount it is worth </param>
+    /// <param name="elementType"> Element attached to it </param>
+    public Axe(string name, int damage, int goldValue, Element elementType) : this(name)
     {
         this.SetDamage(damage);
         this.SetGoldValue(goldValue);
