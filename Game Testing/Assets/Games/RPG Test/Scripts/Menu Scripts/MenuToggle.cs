@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.Cameras;
 
-public class MenuToggle : MonoBehaviour {
+public class menutoggle : MonoBehaviour {
 
     public Transform player;
     public GameObject menuGame;
@@ -11,12 +11,18 @@ public class MenuToggle : MonoBehaviour {
     private GameObject menuStats;
     private GameObject menuSkills;
 
+    private GameObject itemsPanel;
+
+    private Color activeColor = new Color(255, 255, 255);
+    private Color inactiveColor = new Color(150, 150, 150);
+
     // Use this for initialization
     void Start ()
     {
         menuInventory = GameObject.Find("menuInventory");
         menuStats = GameObject.Find("menuStats");
-        menuSkills = GameObject.Find("menuSkills");
+        menuSkills = GameObject.Find("menuEquip");
+        itemsPanel = GameObject.Find("ItemsPanel");
 
         SetMenuVisible(false);
         menuInventory.SetActive(false);

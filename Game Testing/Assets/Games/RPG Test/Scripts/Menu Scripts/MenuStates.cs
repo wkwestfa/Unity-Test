@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum menuStates { Inventory, Stats, Skills };
+enum menuStates { Items, Stats, Equip};
 
 public class MenuStates : MonoBehaviour {
 
