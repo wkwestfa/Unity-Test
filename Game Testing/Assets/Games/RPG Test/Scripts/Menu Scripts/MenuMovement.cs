@@ -1,19 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum MenuChoices { Items, Stats, Equip }
 
 public class MenuMovement : MonoBehaviour
 {
-    MenuChoices[] activeChoice = new MenuChoices[3];
+    private const int NUM_MAIN_MENU_PANELS = 3;
+
+    private GameObject[] mainMenuPanels = new GameObject[NUM_MAIN_MENU_PANELS];
 
     private GameObject menuMain;
     private GameObject menuInventory;
     private GameObject menuStats;
     private GameObject menuEquip;
-    private GameObject menuPicker;
-    private GameObject itemsPanel;
+
+    private GameObject itemsPanelActive;
+    private GameObject statsPanelActive;
+    private GameObject equipPanelActive;
+
+    private GameObject previousPanel; // The previous panel selected
+    private GameObject selectedPanel; // The current panel selected
+
+    private Color previousPanelColor;
+    private Color selectedPanelColor;
 
     private int currentIndex = 0;
 
@@ -24,27 +35,49 @@ public class MenuMovement : MonoBehaviour
         menuInventory = GameObject.Find("menuInventory");
         menuStats = GameObject.Find("menuStats");
         menuEquip = GameObject.Find("menuEquip");
-        itemsPanel = GameObject.Find("ItemsPanel");
-        menuPicker = GameObject.Find("MenuPicker");
 
+        itemsPanelActive = GameObject.Find("ItemsPanelActive");
+        statsPanelActive = GameObject.Find("StatsPanelActive");
+        equipPanelActive = GameObject.Find("EquipPanelActive");
 
-        activeChoice[0] = MenuChoices.Items;
-        activeChoice[1] = MenuChoices.Stats;
-        activeChoice[2] = MenuChoices.Equip;
+        mainMenuPanels[0] = itemsPanelActive;
+        mainMenuPanels[1] = statsPanelActive;
+        mainMenuPanels[2] = equipPanelActive;
+
+        statsPanelActive.SetActive(false); // Set Stats Panel to inactive when the player opens the menu
+        equipPanelActive.SetActive(false); // Set Equip panel to inactive when the player opens the menu
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && currentIndex != 0)
+
+        // This will check which panel the user is currently on, and change which one is active
+        CheckActivePanel();
+    }
+
+    public void CheckActivePanel()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && currentIndex > 0)
         {
             currentIndex--;
-            menuPicker.transform.Translate(0f, 32f, 0f);
+
+            previousPanel = mainMenuPanels[currentIndex + 1];
+            selectedPanel = mainMenuPanels[currentIndex];
+
+            previousPanel.SetActive(false); // Set the last panel to inactive
+            selectedPanel.SetActive(true); // Set the current panel to active
+
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentIndex < (activeChoice.Length - 1))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentIndex < (mainMenuPanels.Length - 1))
         {
             currentIndex++;
-            menuPicker.transform.Translate(0f, -32f, 0f);
+
+            previousPanel = mainMenuPanels[currentIndex - 1];
+            selectedPanel = mainMenuPanels[currentIndex];
+
+            previousPanel.SetActive(false); // Set the last panel to inactive
+            selectedPanel.SetActive(true); // Set the current panel to active
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
@@ -56,11 +89,16 @@ public class MenuMovement : MonoBehaviour
             {
                 ClickStats();
             }
-            else if( currentIndex == 2)
+            else if (currentIndex == 2)
             {
                 ClickEquip();
             }
         }
+    }
+
+    public void ChangeColor(RawImage menuPanel, Color newColor)
+    {
+        menuPanel.color = newColor;
     }
 
     public void ClickInventory()

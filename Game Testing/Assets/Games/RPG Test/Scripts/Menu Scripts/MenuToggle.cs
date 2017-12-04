@@ -33,12 +33,12 @@ public class menutoggle : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && isMenuVisible == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == false)
         {
             SetMenuVisible(true);
             PauseGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Return) && isMenuVisible == true)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == true)
         {
             SetMenuVisible(false);
             UnpauseGame();
