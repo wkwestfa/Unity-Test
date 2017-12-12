@@ -78,6 +78,7 @@ public class MenuMovement : MonoBehaviour
 
             previousPanel.SetActive(false); // Set the last panel to inactive
             selectedPanel.SetActive(true); // Set the current panel to active
+
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
