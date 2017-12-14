@@ -15,22 +15,23 @@ public class WeaponCreation : MonoBehaviour
 
     Weapon newWeapon;
 
+    MenuToggle myMenuMovement = new MenuToggle();
+
     private void Start()
     {
 
         newWeapon = new Sword(weaponName, damage, goldValue, elementType);
 
-
     }
 
     private void Update()
     {
-        if(inTrigger == true && IsTextBoxVisible() && Input.GetKeyDown(KeyCode.E))
+        if(inTrigger == true && IsTextBoxVisible() && Input.GetKeyDown(KeyCode.E)) // If the textbox is on the screen and 'e' is pressed again, make the textbox disappear
         {
             textbox.SetActive(false);
             Destroy(this.gameObject);
         }
-        else if (inTrigger == true && IsTextBoxVisible() == false && Input.GetKeyDown(KeyCode.E))
+        else if (inTrigger == true && IsTextBoxVisible() == false && Input.GetKeyDown(KeyCode.E) && isPaused() == false) // If the item has not yet been picked up & the game is not paused, pick it up
         {
             PickUp(newWeapon);
         }
@@ -89,5 +90,13 @@ public class WeaponCreation : MonoBehaviour
     {
         textboxText.text = "Found " + item.GetName() + "!";
         textbox.SetActive(true);
+    }
+
+    public bool isPaused()
+    {
+        if (Time.timeScale == 0)
+            return true;
+        else
+            return false;
     }
 }

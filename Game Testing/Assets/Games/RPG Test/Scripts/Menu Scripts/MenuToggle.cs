@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.Cameras;
 
-public class menutoggle : MonoBehaviour {
+public class MenuToggle : MonoBehaviour {
 
     public Transform player;
-    public GameObject menuGame;
 
     private bool isMenuVisible;
+
+    private GameObject menuGame;
     private GameObject menuInventory;
     private GameObject menuStats;
     private GameObject menuSkills;
-
-    private GameObject itemsPanel;
 
     private Color activeColor = new Color(255, 255, 255);
     private Color inactiveColor = new Color(150, 150, 150);
@@ -22,7 +21,7 @@ public class menutoggle : MonoBehaviour {
         menuInventory = GameObject.Find("menuInventory");
         menuStats = GameObject.Find("menuStats");
         menuSkills = GameObject.Find("menuEquip");
-        itemsPanel = GameObject.Find("ItemsPanel");
+        menuGame = GameObject.Find("menuMain");
 
         SetMenuVisible(false);
         menuInventory.SetActive(false);
@@ -33,12 +32,12 @@ public class menutoggle : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == false) // Menu Appears
         {
             SetMenuVisible(true);
             PauseGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == true)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isMenuVisible == true) // If in menu and tab is press, menu disappears
         {
             SetMenuVisible(false);
             UnpauseGame();
