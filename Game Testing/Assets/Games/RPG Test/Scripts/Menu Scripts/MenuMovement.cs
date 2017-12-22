@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum MenuChoices { Items, Stats, Equip }
+enum MenuChoices {Items, Stats, Equip}
 
 public class MenuMovement : MonoBehaviour
 {
     private const int NUM_MAIN_MENU_PANELS = 3;
 
-    private GameObject[] mainMenuPanels = new GameObject[NUM_MAIN_MENU_PANELS];
+    private GameObject[] arrMainMenuPanels = new GameObject[NUM_MAIN_MENU_PANELS];
+    private GameObject[] arrMenus = new GameObject[NUM_MAIN_MENU_PANELS];
 
     private GameObject menuMain;
     private GameObject menuInventory;
@@ -23,26 +24,22 @@ public class MenuMovement : MonoBehaviour
     private GameObject previousPanel; // The previous panel selected
     private GameObject selectedPanel; // The current panel selected
 
-    private Color previousPanelColor;
-    private Color selectedPanelColor;
-
     private int currentIndex = 0;
 
     // Use this for initialization
     void Start ()
     {
+        itemsPanelActive = GameObject.Find("ItemsPanelActive");
+        statsPanelActive = GameObject.Find("StatsPanelActive");
+        equipPanelActive = GameObject.Find("EquipPanelActive");
+
         menuMain = GameObject.Find("menuMain");
         menuInventory = GameObject.Find("menuInventory");
         menuStats = GameObject.Find("menuStats");
         menuEquip = GameObject.Find("menuEquip");
 
-        itemsPanelActive = GameObject.Find("ItemsPanelActive");
-        statsPanelActive = GameObject.Find("StatsPanelActive");
-        equipPanelActive = GameObject.Find("EquipPanelActive");
-
-        mainMenuPanels[0] = itemsPanelActive;
-        mainMenuPanels[1] = statsPanelActive;
-        mainMenuPanels[2] = equipPanelActive;
+        arrMainMenuPanels = new GameObject[] { itemsPanelActive, statsPanelActive, equipPanelActive };  // Set all panels here
+        arrMenus = new GameObject[] {menuInventory, menuStats, menuEquip };                             // Set all Menus here
 
         statsPanelActive.SetActive(false); // Set Stats Panel to inactive when the player opens the menu
         equipPanelActive.SetActive(false); // Set Equip panel to inactive when the player opens the menu
@@ -62,19 +59,19 @@ public class MenuMovement : MonoBehaviour
         {
             currentIndex--;
 
-            previousPanel = mainMenuPanels[currentIndex + 1];
-            selectedPanel = mainMenuPanels[currentIndex];
+            previousPanel = arrMainMenuPanels[currentIndex + 1];
+            selectedPanel = arrMainMenuPanels[currentIndex];
 
             previousPanel.SetActive(false); // Set the last panel to inactive
             selectedPanel.SetActive(true); // Set the current panel to active
 
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentIndex < (mainMenuPanels.Length - 1))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentIndex < (arrMainMenuPanels.Length - 1))
         {
             currentIndex++;
 
-            previousPanel = mainMenuPanels[currentIndex - 1];
-            selectedPanel = mainMenuPanels[currentIndex];
+            previousPanel = arrMainMenuPanels[currentIndex - 1];
+            selectedPanel = arrMainMenuPanels[currentIndex];
 
             previousPanel.SetActive(false); // Set the last panel to inactive
             selectedPanel.SetActive(true); // Set the current panel to active
@@ -82,47 +79,13 @@ public class MenuMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            if (currentIndex == 0)
-            {
-                ClickInventory();
-            }
-            else if (currentIndex == 1)
-            {
-                ClickStats();
-            }
-            else if (currentIndex == 2)
-            {
-                ClickEquip();
-            }
+            clickPanel(arrMenus[currentIndex]);
         }
     }
 
-    public void ChangeColor(RawImage menuPanel, Color newColor)
-    {
-        menuPanel.color = newColor;
-    }
-
-    public void ClickInventory()
+    public void clickPanel(GameObject currentMenu)
     {
         menuMain.SetActive(false);
-        menuInventory.SetActive(true);
-        menuStats.SetActive(false);
-        menuEquip.SetActive(false);
-    }
-
-    public void ClickStats()
-    {
-        menuMain.SetActive(false);
-        menuInventory.SetActive(false);
-        menuStats.SetActive(true);
-        menuEquip.SetActive(false);
-    }
-
-    public void ClickEquip()
-    {
-        menuMain.SetActive(false);
-        menuInventory.SetActive(false);
-        menuStats.SetActive(false);
-        menuEquip.SetActive(true);
+        currentMenu.SetActive(true);
     }
 }

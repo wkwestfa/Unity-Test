@@ -23,7 +23,7 @@ public class MenuBack : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace) && Time.timeScale == 0)
         {
             ClickBack();
         }
